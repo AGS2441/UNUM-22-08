@@ -1,0 +1,215 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Http
+@using UNUMSelfPwdReset
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- META DATA -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UNUMSelfPwdReset</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/UNUMSelfPwdReset.styles.css" asp-append-version="true" />
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/brand/favicon.ico">
+
+    <!-- TITLE -->
+    <title>UNUM-Self Service Password Reset Portal </title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- STYLE CSS -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+    <!-- Plugins CSS -->
+    <link href="~/assets/css/plugins.css" rel="stylesheet">
+
+    <!--- FONT-ICONS CSS -->
+    <link href="~/assets/css/icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- INTERNAL Switcher css -->
+    <link href="~/assets/switcher/css/switcher.css" rel="stylesheet">
+    <link href="~/assets/switcher/demo.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+
+<body class="app sidebar-mini ltr light-mode">
+
+    <!-- GLOBAL-LOADER -->
+    <div id="global-loader">
+        <img src="~/assets/images/loader.svg" class="loader-img" alt="Loader">
+    </div>
+    <!-- /GLOBAL-LOADER -->
+    <!-- PAGE -->
+    <div class="page">
+        <div class="page-main">
+            <!--APP-SIDEBAR-->
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <div class="sticky">
+                    <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+                    <div class="app-sidebar" style="background: #00428c;box-shadow: 0 0 3px 3px #f4f4f4;">
+                        <div class="side-header" style="background: #00428c;">
+                            @*<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>*@
+                            <a class="header-brand1" href="index.html">
+                                <center><img src="~/assets/images/brand/logo-2.png" class="header-brand-img light-logo1" alt="logo" style="height:36px;" /></center>
+                                <br/>
+                                <label style="color:#ffffff;font-size:11px;">SELF SERVICE PASSWORD RESET</label>
+                            </a>
+                            <br />
+                        </div>
+
+                        <div class="main-sidemenu">
+                            <div class="pf-img">
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    @if (@Context.Session.GetString("Profilepic") != null && @Context.Session.GetString("Profilepic") != "")
+                                    {
+                                        <img src="data:image;base64,@Context.Session.GetString("Profilepic")" style="height:150px;border-radius:50%;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/assets/images/user.png" style="height:150px;border-radius:50%;" />
+
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="~/assets/images/user.png" style="height:150px;border-radius:50%;" />
+                                }
+
+                            </div>
+                            <div class="slide-left disabled" id="slide-left">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                 fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z" />
+                                </svg>
+                            </div>
+                            <ul class="side-menu">
+                                <li class="sub-category text-center">
+                                    <h3 style=" color: #ffffff;">@Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</h3>
+                                </li>
+                            </ul>
+                            <div class="footer" id="slide-right">
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <a class="nav-link " asp-area="MicrosoftIdentity" style="color:#ffffff;" asp-controller="Account" asp-action="SignOut">
+                                        <i class="fa fa-sign-out pr-5" aria-hidden="true"></i> Sign out
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="nav-link " asp-area="MicrosoftIdentity" style="color:#ffffff;" asp-controller="Account" asp-action="SignIn">
+                                        <i class="fa fa-sign-in pr-5" aria-hidden="true"></i> Sign in
+                                    </a>
+                                }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            <!--/APP-SIDEBAR-->
+            <!--app-content open-->
+            <div class="main-content app-content mt-0">
+                
+                <main role="main" class="pb-3" style="padding: 45px;">
+                    @if (User.Identity?.IsAuthenticated != true)
+                    {
+                        <img src="~/assets/images/brand/logo.png" alt="logo" style="height:36px;margin: 15px 0;" />
+                    }
+                    @RenderBody()
+                </main>
+                 @if (User.Identity?.IsAuthenticated != true)
+                {
+                    <a class="btn btn-primary" asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn" style="margin: 0 45px;">
+                        <i class="fa fa-sign-in f-16 pr-5" aria-hidden="true"></i>  Sign in
+                    </a>
+                }
+            </div>
+            <!--app-content closed-->
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer class="footer L-footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        Copyright © <span id="year"></span> UNUM All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER CLOSED -->
+    </div>
+
+    <!-- BACK-TO-TOP -->
+   @* <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>*@
+
+    <!-- JQUERY JS -->
+    <script src="~/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="~/assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- TypeHead js -->
+    <script src="~/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+    <script src="~/assets/js/typehead.js"></script>
+    s
+    <!-- Select2 JS-->
+    <script src="~/assets/plugins/select2/select2.full.min.js"></script>
+    <script src="~/assets/js/select2.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="~/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="~/assets/plugins/p-scroll/pscroll.js"></script>
+    <script src="~/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- SIDE-MENU JS -->
+    <script src="~/assets/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="~/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="~/assets/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="~/assets/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="~/assets/js/custom.js"></script>
+
+    <!-- Custom-switcher -->
+    <script src="~/assets/js/custom-swicher.js"></script>
+
+    <!-- Switcher js -->
+    <script src="~/assets/switcher/js/switcher.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).on('click', '#closePopupNotificationView', function (e) {
+            $("#_PopupNotificationView").hide();
+        });
+    </script>
+    @if (TempData["PopupViewModel"] != null)
+    {
+        var popupViewModel = TempData.GetObjectFromJson<PopupViewModel>("PopupViewModel");
+        <partial name="Popup" model="popupViewModel" />
+    }
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

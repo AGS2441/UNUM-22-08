@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model UserProfileViewModel
+
+<div class="page-header">
+    <h1 class="page-title">My Accounts</h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Dashboard" asp-controller="Home"><i class="fa fa-tachometer f-16" aria-hidden="true"></i> Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-user f-16"></i> My Accounts</li>
+        </ol>
+    </div>
+</div>
+ 
+@if (Model.LoginClients != null)
+{
+    int Sno = 0;
+    <div class="row mb-1">
+        <div class="col-3">
+            <label class="h5">Total Count: <span class="fw-bold"> </span>@Model.LoginClients.Count</label>
+        </div>
+        <div class="col-6">
+        </div>
+        <div class="col-3 text-right ">
+        </div>
+    </div>
+    <div class="table-responsive mb-2" style="min-height:320px;">
+        <table class="table border ">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>S.No</th>
+                    <th>Account Type</th>
+                    <th>Last Login</th>
+                    <th>Expires In</th>
+                    <th style="min-width:72px" class="text-center">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LoginClients)
+                {
+                    Sno++;
+                    <tr>
+                        <td>@Sno</td>
+
+                        <td>@item.LoginType</td>
+                        <td>@item.LastSignInAt?.ToString("yyyy-MM-dd | hh:mm tt")</td>
+                        @if (item.ExpireInDays.HasValue)
+                        {
+                            <td>
+
+                                @if (item.ExpireInDays.Value >= 20)
+                                {
+                                    <i class="fa fa-timer text-success" />
+                                }
+                                else if (item.ExpireInDays.Value >= 10)
+                                {
+                                    <i class="fa fa-timer text-warning" />
+                                }
+                                else
+                                {
+                                    <i class="fa fa-timer text-danger" />
+                                }
+
+                                @item.ExpireInDays Days
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td class="text-center">
+                            @if (item.HasAccess)
+                            {
+                                <a class="btn btn-primary" asp-action="ResetPassword">
+                                    <i class="fa fa-pencil-square-o f-16" aria-hidden="true"></i>  Reset Password
+                                </a>
+                            }
+                            else
+                            {
+
+                                <a class="btn btn-outline-primary" disabled>
+                                    Disabled
+                                </a>
+                            }
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <div>
+        <h6>No login accounts was found.</h6>
+    </div>
+}
+
+
+ 

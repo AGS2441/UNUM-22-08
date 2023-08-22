@@ -1,0 +1,141 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/*body {
+  margin-bottom: 60px;
+}*/
+.table th, .text-wrap table th{
+    color:#ffff;
+}
+.table tbody td {
+    border-color: #c6dbff;
+    border-right: 1px dotted #c6dbff;
+    border-left: 1px dotted #c6dbff;
+}
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* xs */
+/*p {
+    color: #ccc;
+    font-size: 1.25rem;
+    padding: 0 0.3rem;
+    font-weight: 400;
+}*/
+
+  /*  p:after {
+        content: " Handhelds";
+        color: darkslategray;
+        font-weight: 700;
+    }*/
+
+section.dashboard-buttons {
+    /*max-width: 980px;*/
+    margin: 3rem auto;
+}
+
+    section.dashboard-buttons .tile-button {
+        list-style: none;
+        overflow: hidden;
+        padding: 0.5rem;
+        max-width: 76rem;
+    }
+
+        section.dashboard-buttons .tile-button li {
+            padding: 40px 25px;
+            background-color: dodgerblue;
+            color: white;
+            display: block;
+            max-width: 100%;
+            border-radius: 5px;
+            margin: 5px;
+            text-align: center;
+            height: 175px;
+            overflow: hidden;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+            section.dashboard-buttons .tile-button li:hover {
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            }
+
+            section.dashboard-buttons .tile-button li small {
+                font-weight: 400;
+                font-style: italic;
+            }
+
+        section.dashboard-buttons .tile-button i {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+/* small */
+@media all and (min-width: 20em) {
+    /*p:after {
+        content: " small screens";
+        color: darkslategray;
+        font-weight: 700;
+    }*/
+
+    .dashboard-buttons {
+        margin-left: 1rem;
+    }
+
+    .tile-button li {
+        width: 45.5%;
+        float: left;
+    }
+}
+/* large */
+@media all and (min-width: 40em) {
+    .tile-button li {
+        width: 23%;
+    }
+}
+.f-16 {
+    font-size: 16px;
+}
+.d-4 {
+    background-color: #1e90ff;
+    background-image: linear-gradient(315deg, #1e90ff 0%, #efe9e1 74%);
+}
+.d-2 {
+    background-color: #bbf0f3;
+    background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);
+}
+.d-3 {
+    background-color: #247ba0;
+    background-image: linear-gradient(315deg, #247ba0 20%, #ffffb5 74%);
+}
+.d-1 {
+    background-color: #182b3a;
+    background-image: linear-gradient(315deg, #182b3a 0%, #20a4f3 74%);
+}
+.pr-5{
+    padding-right:5px;
+}
+.L-footer {
+    line-height: 0px !important;
+    padding: 1.25rem 1.25rem 0rem 1.25rem !important;
+    font-size: 13px;
+    font-weight: 600;
+    color: #00428c;
+    letter-spacing: 1.5px;
+}

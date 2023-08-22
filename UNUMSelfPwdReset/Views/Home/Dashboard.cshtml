@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model UserProfileViewModel
+
+@*<div>
+    <h4 class="display-6">Welcome, @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</h4>
+</div>*@
+<div class="page-header">
+    <h1 class="page-title">Welcome, @Context.Session.GetString("FirstName") @Context.Session.GetString("LastName")</h1>
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)"><i class="fa fa-tachometer f-16" aria-hidden="true"></i> Dashboard</a></li>
+            @*<li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>*@
+        </ol>
+    </div>
+</div>
+<!--Pattern HTML-->
+<section class="dashboard-buttons">
+    <ul class="tile-button">
+        <a asp-controller="Home" asp-action="Index">
+        <li class="d-1">
+            <i class="fa fa-user"></i>
+            <br>My Accounts
+        </li>
+        </a>
+       @* <li class="d-2">
+            <i class="fa fa-clipboard"></i>
+            <br>Start a New Application
+
+        </li>
+        <li class="d-3">
+            <i class="fa fa-files-o"></i>
+            <br>Continue Unfinished Application
+            <br><small>123 Example Road Longer Long</small>
+        </li>
+
+        <li class="d-4">
+            <i class="fa fa-youtube-play"></i>
+            <br>Tips for Success Video Series
+        </li>*@
+    </ul>
+</section>
